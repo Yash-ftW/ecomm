@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
 import Rating from "../components/Rating";
 
@@ -7,15 +7,16 @@ import axios from 'axios'
 
 
 
-function ProductScreen({match}) {
+function ProductScreen(props) {
+  const { id } = useParams();
   const[product,setProduct]=useState([])
   useEffect(()=>{
     async function fetchProduct(){
-      const {data} =await axios.get(`/api/products/${match.params.id}`)
+      const {data} =await axios.get(`/api/products/${id}`)
       setProduct(data)
     }
     fetchProduct()
-  },[match.params.id])
+  },[id])
   return (
     <div>
       <Link to="/" className="btn btn-light my-3">
@@ -23,7 +24,7 @@ function ProductScreen({match}) {
       </Link>
       <Row>
         <Col md={6}>
-          <Image src={product.image} alt={product.name} fuid />
+          <Image src={product.image} alt={product.name} fluid />
         </Col>
         <Col md={3}>
           <ListGroup variant="flush">
