@@ -23,8 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 */__pycache__/*
-<<<<<<< HEAD
-
-=======
->>>>>>> 679ff2278b42638fc33d9e78a8143ef7ddd9449a
 *.sqlite3
