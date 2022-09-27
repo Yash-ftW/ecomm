@@ -15,12 +15,12 @@ function RegisterScreen({ location }) {
   const [message, setMessage] = useState("");
   const [searchParams] = useSearchParams();
 
-  const redirect = searchParams.get("redirect");
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   //const redirect = location.search ? location.search.split("=")[1] : "/";
+  const redirect = searchParams.get("redirect");
 
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, userInfo, error } = userRegister;
@@ -42,7 +42,7 @@ function RegisterScreen({ location }) {
   };
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1>Register</h1>
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
