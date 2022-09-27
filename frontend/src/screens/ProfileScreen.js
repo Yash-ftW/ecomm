@@ -28,11 +28,11 @@ function ProfileScreen() {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate("/login");
+      navigate("/login"); //If User Isnt Logged in
     } else {
       if (!user || !user.name || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(getUserDetails("profile"));
+        dispatch(getUserDetails("profile")); //If we Dont Have it then we dispatch to get the data
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -70,7 +70,7 @@ function ProfileScreen() {
             <Form.Control
               required
               type="name"
-              placeholder="Enter Name"
+              placeholder="Change Name"
               val={name}
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
