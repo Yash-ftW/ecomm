@@ -34,7 +34,7 @@ function ShippingScreen() {
             required
             type="text"
             placeholder="Enter Address"
-            value={address ? address : ""}
+            value={address ? address : ""} //Possible error point
             onChange={(e) => setAddress(e.target.value)}
           ></Form.Control>
         </Form.Group>
