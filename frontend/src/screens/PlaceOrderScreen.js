@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,15 +29,14 @@ function PlaceOrderScreen() {
     Number(cart.taxPrice)
   ).toFixed(2);
 
-  if (!cart.paymentMethod) {
-    navigate("/payment");
-  }
-
   useEffect(() => {
+    if (!cart.paymentMethod) {
+      navigate("/payment");
+    }
     if (success) {
       navigate(`/order/${order._id}`);
     }
-  }, [success, navigate]);
+  }, [success, navigate, cart.paymentMethod, order]);
 
   const placeOrder = () => {
     dispatch(
