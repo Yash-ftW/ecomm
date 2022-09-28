@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
 import { saveShippingAddress } from "../actions/cartActions";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 function ShippingScreen() {
   const cart = useSelector((state) => state.cart);
@@ -24,6 +25,7 @@ function ShippingScreen() {
 
   return (
     <FormContainer>
+      <CheckoutSteps step1 step2 />
       <h1>Shipping Address</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
@@ -32,7 +34,7 @@ function ShippingScreen() {
             required
             type="text"
             placeholder="Enter Address"
-            val={address ? address : ""}
+            value={address ? address : ""} //Possible error point
             onChange={(e) => setAddress(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -43,7 +45,7 @@ function ShippingScreen() {
             required
             type="text"
             placeholder="Enter City"
-            val={city ? city : ""}
+            value={city ? city : ""}
             onChange={(e) => setCity(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -54,7 +56,7 @@ function ShippingScreen() {
             required
             type="text"
             placeholder="Enter Postal Code"
-            val={postalCode ? postalCode : ""}
+            value={postalCode ? postalCode : ""}
             onChange={(e) => setPostalCode(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -65,7 +67,7 @@ function ShippingScreen() {
             required
             type="text"
             placeholder="Enter Country"
-            val={country ? country : ""}
+            value={country ? country : ""}
             onChange={(e) => setCountry(e.target.value)}
           ></Form.Control>
         </Form.Group>
