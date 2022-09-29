@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from base.models import Product, Order, OrderItem, ShippingAddress
-
+from datetime import datetime
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])  # And Here
@@ -69,3 +69,14 @@ def getOrderById(request,pk):
             Response({'detail':'Not Authorized to view this order'},status=status.HTTP_400_BAD_REQUEST)
     except:
         return Response({'detail':'Order doesnot exist'},status=status.HTTP_400_BAD_REQUEST)        
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])     
+def updateOrderToPaid(request,pk):
+    order=Order.objects.get(_id=pk)
+    
+    order.isPaid=True
+    order.paidAt=datetime.now()
+    order.save()
+    return Response('Order Was paid')
+    
