@@ -23,7 +23,7 @@ function CartScreen({ location, history }) {
   const navigate = useNavigate();
   const productId = id;
   const [searchParams] = useSearchParams();
-  const qty = Number(searchParams.get("qty"));
+  const qty = searchParams.get("qty") ? Number(searchParams.get("qty")) : 1;
 
   const dispatch = useDispatch();
 
