@@ -9,6 +9,7 @@ import { getOrderDetails, payOrder } from "../actions/orderActions";
 import { ORDER_PAY_RESET } from "../constants/orderConstants";
 
 function OrderScreen() {
+  //match.params.id
   const { id } = useParams();
   const orderId = id;
   const dispatch = useDispatch();
