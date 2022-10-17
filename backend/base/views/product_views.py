@@ -6,9 +6,9 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 
-from base.models import Product
+from base.models import Product,Review
 from base.serializer import ProductSerializer
-
+from rest_framework import status
 
 @api_view(['GET'])
 def getProducts(request):
@@ -77,3 +77,42 @@ def uploadImage(request):
     product.image=request.FILES.get('image')
     product.save()
     return Response('Image was uploaded')
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated, ])
+def createProdctReview(request,pk):
+    user=request.user
+    product = Product.objects.get(_id=pk)
+    data=request.data
+    
+    #1 Review already exists
+    alreadyExists=product.review_set.filter(user=user).exists()
+    
+    if alreadyExists:
+        content={'details':'Product already reviewed'}
+        return Response(content,status=status.HTTP_400_BAD_REQUEST)
+    
+    #2 No Rating or 0
+    elif data['rating']==0:
+        content={'details':'Product Select a rating'}
+        return Response(content,status=status.HTTP_400_BAD_REQUEST)
+    #3 Create Review
+    else:
+        review=Review.objects.create(
+            user=user,
+            product=product,
+            name=user.first_name,
+            rating=data['rating'],
+            comment=data['comment'],
+        )
+        
+        reviews=product.review_set.all()
+        product.numReviews=len(reviews)
+        
+        total=0
+        for i in reviews:
+            total += i.rating
+        product.rating=total/len(reviews)
+        product.save()
+        
+        return Response('Review Added')
