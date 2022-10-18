@@ -35,7 +35,7 @@ function ProfileScreen() {
     if (!userInfo) {
       navigate("/login"); //If User Isnt Logged in
     } else {
-      if (!user || !user.name || success) {
+      if (!user || !user.name || success || userInfo._id !== user._id) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile")); //If we Dont Have it then we dispatch to get the data
         dispatch(listMyOrders());
@@ -77,7 +77,7 @@ function ProfileScreen() {
               required
               type="name"
               placeholder="Change Name"
-              val={name}
+              value={name}
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
           </Form.Group>
@@ -88,7 +88,7 @@ function ProfileScreen() {
               required
               type="email"
               placeholder="Enter Email"
-              val={email}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
@@ -98,7 +98,7 @@ function ProfileScreen() {
             <Form.Control
               type="password"
               placeholder="Enter Password"
-              val={password}
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
@@ -108,7 +108,7 @@ function ProfileScreen() {
             <Form.Control
               type="password"
               placeholder="Confirm Password"
-              val={confirmPassword}
+              value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
