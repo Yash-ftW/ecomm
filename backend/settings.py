@@ -189,3 +189,8 @@ CORS_ALLOW_ALL_ORIGINS=True
 # Configure Django App for Heroku.
 
 django_heroku.settings(locals())
+
+#Dj Database
+import dj_database_url
+prod_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
