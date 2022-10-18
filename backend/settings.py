@@ -135,7 +135,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+#Dj Database
+import dj_database_url
+prod_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'] = dj_database_url.config(default='postgres://kjgtovbdomzzwu:2d74e2c1005d499aacb252e55768b46eb4d56a13fd3b6c364cb598137b36c703@ec2-44-209-24-62.compute-1.amazonaws.com:5432/d768p00k997kvh')
+DATABASES['default'].update(prod_db)
 
 
 # Password validation
@@ -191,7 +195,3 @@ CORS_ALLOW_ALL_ORIGINS=True
 
 django_heroku.settings(locals())
 
-#Dj Database
-import dj_database_url
-prod_db = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
