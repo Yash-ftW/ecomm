@@ -8,6 +8,6 @@ Find Live Demo At: https://ecommftw.herokuapp.com/ <br/>
 Developed By:
 <ul>
 <li><a href="https://github.com/HordesOfGhost" target="_blank" rel="noopener noreferrer">HordesOfGhost</a></li>
-<li><a href="https://github.com/MrFluffy-ftW" target="_blank" rel="noopener noreferrer">MrFluffy-ftW</a></li>
+<li><a href="https://github.com/Yash-ftW" target="_blank" rel="noopener noreferrer">Fluffy-ftW</a></li>
 </ul>
 <hr/>
